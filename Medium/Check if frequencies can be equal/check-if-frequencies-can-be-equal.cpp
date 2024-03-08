@@ -9,24 +9,24 @@ class Solution{
 public:	
 	bool sameFreq(string s)
 	{
-	    vector<int>v(26,0);
-	    unordered_set<int>st;
-	    for(auto &b: s){v[b-'a']++;}
-	    for(auto &b: v){if(b!=0){st.insert(b);}}
-	    if(st.size()==1){return 1;}
-	    for(auto &b: v){
-	        if(b==0){continue;}
-	        b--;
-	        unordered_set<int>st;
-	        for(auto &b: v){
-	            if(b!=0){
-	                st.insert(b);
-	            }
-	        }
-	        if(st.size()==1){return 1;}
-	        b++;
+	    int arr[26]={0};
+	    for(auto ch: s) arr[ch-'a']++;
+	    int cnt=0;
+	    int mn=INT_MAX, mx=0;
+	    for(int i=0; i<26; i++){ if (arr[i]!=0){
+	        mn=min(mn, arr[i]);
+	        mx=max(mx, arr[i]);
+	    }}
+	    if (mx == 0 or (mn == mx)) return true; int cntmn=0, cntmx=0;
+	    if (abs(mn-mx) > 1) return false;
+	    for(int i=0; i<26; i++){
+	        if (arr[i]==0) continue;
+	        if (arr[i] == mn) cntmn++;
+	        else if (arr[i] == mx) cntmx++;
+	        else return false;
 	    }
-	    return 0;
+	    if (abs(cntmn - cntmx) > 1 or (mn!=1 and cntmx!=1)) return false;
+	    return true;
 	}
 };
 
