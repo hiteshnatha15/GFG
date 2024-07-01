@@ -34,8 +34,6 @@ void push(struct Node **head_ref, int new_data) {
     (*head_ref) = new_node;
 }
 
-void convert(Node *head, TreeNode *&root);
-
 void lvl(TreeNode *r) {
     if (r == NULL)
         return;
@@ -65,7 +63,44 @@ void reverses(Node **head) {
     *head = prev;
 }
 
-/* Driver program to test above function*/
+
+// } Driver Code Ends
+class Solution {
+  public:
+    void convert(Node *head, TreeNode *&root) {
+         root = new TreeNode(head->data);
+        Node* temp = head;
+        queue<TreeNode*> q;
+        q.push(root);
+        
+        while(!q.empty()){
+            
+            int n = q.size();
+            
+            for(int i=0; i<n; i++){
+                TreeNode* curr = q.front();
+                q.pop();
+                if(temp->next){
+                    TreeNode* l = new TreeNode(temp->next->data);
+                    curr->left = l;
+                    q.push(l);
+                    temp=temp->next;
+                }
+                if(temp->next){
+                    TreeNode* r = new TreeNode(temp->next->data);
+                    curr->right = r;
+                    q.push(r);
+                    temp=temp->next;
+                }
+                curr=curr->left;
+            }
+        }
+    }
+};
+
+
+//{ Driver Code Starts.
+
 int main() {
     int T, i, n, l, k;
 
@@ -82,7 +117,9 @@ int main() {
         reverses(&head);
         Node *prevhead = head;
         TreeNode *root = NULL;
-        convert(head, root);
+        Solution obj;
+
+        obj.convert(head, root);
         if (root == NULL) {
             cout << "-1\n";
         } else if (root == NULL && prevhead != NULL) {
@@ -98,47 +135,3 @@ int main() {
 }
 
 // } Driver Code Ends
-
-
-/*
-The structure of Link list Node is as follows
-struct Node
-{
-    int data;
-    struct node* next;
-
-    Node(int x){
-        data = x;
-        next = NULL;
-    }
-};
-The structure of TreeNode is as follows
-struct TreeNode
-{
-    int data;
-    TreeNode *left;
-    TreeNode *right;
-};
-*/
-
-// Function to make binary tree from linked list.
-void convert(Node *head, TreeNode *&root) {
-    // Your code here
-    root=new TreeNode(head->data);
-    queue<TreeNode*>q;
-    q.push(root);
-    head=head->next;
-    while(head!=NULL && !q.empty()) {
-        TreeNode* temp=q.front();
-        q.pop();
-        temp->left = new TreeNode(head->data);
-        q.push(temp->left);
-        head=head->next;
-        
-        if(head!=NULL) {
-            temp->right= new TreeNode(head->data);
-            q.push(temp->right);
-            head=head->next;
-        }
-    }
-}
