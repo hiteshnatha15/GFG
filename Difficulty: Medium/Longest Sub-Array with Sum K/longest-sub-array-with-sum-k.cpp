@@ -9,10 +9,9 @@ class Solution{
     int lenOfLongSubarr(int A[],  int N, int K) 
     { 
         // Complete the function
+        map<int,int> mp;
         int sum=0;
         int maxLen=0;
-        map<int,int> mp;
-        
         for(int i=0;i<N;i++){
             sum=sum+A[i];
             if(sum==K)
