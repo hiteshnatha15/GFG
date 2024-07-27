@@ -9,6 +9,20 @@ class Solution{
     int lenOfLongSubarr(int A[],  int N, int K) 
     { 
         // Complete the function
+        map<int,int> mp;
+        int count=0;
+        int sum=0;
+        for(int i=0;i<N;i++){
+            sum+=A[i];
+            if(sum==K)
+                count=max(count,i+1);
+            int rem=sum-K;
+            if(mp.find(rem)!=mp.end())
+                count=max(count,i-mp[rem]);
+            if(mp.find(sum)==mp.end())
+                mp[sum]=i;
+        }
+        return count;
     } 
 
 };
