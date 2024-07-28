@@ -17,10 +17,7 @@ class Solution {
         int index=-1;
         while(low<=high){
             long long mid=(low+high)/2;
-            if(v[mid]==x){
-                return mid;
-            }
-            else if(x>v[mid]){
+            if(v[mid]<=x){
                 index=mid;
                 low=mid+1;
             }
