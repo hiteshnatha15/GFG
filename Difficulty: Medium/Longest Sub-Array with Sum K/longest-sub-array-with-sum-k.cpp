@@ -11,20 +11,22 @@ class Solution{
         // Complete the function
         map<int,int> mp;
         int count=0;
-        int sum=0;
+        long long sum=0;
         for(int i=0;i<N;i++){
             sum+=A[i];
-            if(sum==K)
+            if(sum==K){
                 count=max(count,i+1);
+            }
             int rem=sum-K;
-            if(mp.find(rem)!=mp.end())
+            if(mp.find(rem)!=mp.end()){
                 count=max(count,i-mp[rem]);
-            if(mp.find(sum)==mp.end())
+            }
+            if(mp.find(sum)==mp.end()){
                 mp[sum]=i;
+            }
         }
         return count;
     } 
-
 };
 
 //{ Driver Code Starts.
