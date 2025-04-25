@@ -26,20 +26,13 @@ class Array {
 class Solution {
   public:
     // Function to perform selection sort on the given array.
-    void selectionSort(vector<int> &nums) {
+    void selectionSort(vector<int> &arr) {
         // code here
-            for (int i = 0; i < nums.size() - 1; i++) {
-            int mini = nums[i];
-            int index = i;
-            for (int j = i + 1; j < nums.size(); j++) {
-                if (nums[j] < mini) {
-                    mini = nums[j];
-                    index = j;
-                }
+        for(int i=1;i<arr.size();i++){
+            for(int j = i; j>0;j--){
+                if(arr[j-1]>arr[j] )
+                    swap(arr[j-1],arr[j]);
             }
-            int temp = nums[i];
-            nums[i] = mini;
-            nums[index] = temp;
         }
     }
 };
