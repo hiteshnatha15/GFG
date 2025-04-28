@@ -4,21 +4,21 @@ using namespace std;
 
 
 // } Driver Code Ends
+
 // User function template for C++
 
 class Solution {
   public:
-    bool arraySortedOrNot(vector<int>& arr) {
+    bool arraySortedOrNot(vector<int>& nums) {
         // code here
-        int n=arr.size();
-        for(int i=1;i<n;i++){
-            if(arr[i-1]>arr[i] || arr[n-i]<arr[n-1-i])
-            return false;
+            for(int i=0;i<nums.size()-1;i++){
+            if(nums[i]>nums[i+1])
+                return false;
         }
-        
         return true;
     }
 };
+
 
 //{ Driver Code Starts.
 
@@ -39,6 +39,7 @@ int main() {
         Solution ob;
         bool ans = ob.arraySortedOrNot(nums);
         cout << (ans ? "true" : "false") << endl;
+        cout << "~\n";
     }
     return 0;
 }
