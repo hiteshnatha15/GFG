@@ -6,12 +6,12 @@ class Solution {
         helper(arr,ans,0,0);
         return ans;
     }
-    void helper(vector<int>& arr, vector<int>& ans, int idx, int sum){
+    void helper(vector<int>& arr, vector<int>& ans, int sum, int idx){
         if(idx==arr.size()){
             ans.push_back(sum);
             return;
         }
-        helper(arr,ans,idx+1,sum+arr[idx]);
-        helper(arr,ans,idx+1,sum);
+        helper(arr,ans,sum+arr[idx],idx+1);
+        helper(arr,ans,sum,idx+1);
     }
 };
