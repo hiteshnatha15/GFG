@@ -7,11 +7,9 @@ class Solution {
         return ans;
     }
     void helper(vector<int>& arr, vector<int>& ans, int sum, int idx){
-        if(idx==arr.size()){
-            ans.push_back(sum);
-            return;
+        ans.push_back(sum);
+        for(int i=idx;i<arr.size();i++){
+            helper(arr,ans,sum+arr[i],i+1);
         }
-        helper(arr,ans,sum+arr[idx],idx+1);
-        helper(arr,ans,sum,idx+1);
     }
 };
