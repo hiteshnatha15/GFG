@@ -1,16 +1,5 @@
 class Solution {
   public:
-   void helper(stack<int> &st, int temp){
-       if(st.empty() || st.top()<=temp){
-           st.push(temp);
-           return;
-       }
-       int top = st.top();
-       st.pop();
-       helper(st,temp);
-       st.push(top);
-       return;
-   }
     void sortStack(stack<int> &st) {
         // code here
         if(!st.empty()){
@@ -19,5 +8,17 @@ class Solution {
             sortStack(st);
             helper(st,temp);
         }
+        return;
+    }
+    void helper(stack<int>& st, int temp){
+        if(st.empty() || st.top() <= temp){
+            st.push(temp);
+            return;
+        }
+        int num = st.top();
+        st.pop();
+        helper(st,temp);
+        st.push(num);
+        return;
     }
 };
